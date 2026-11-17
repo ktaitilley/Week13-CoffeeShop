@@ -14,7 +14,10 @@ public class StringChallenges {
     //   orderCode("Tea", 'L')   -> "TEA-L"
     //   orderCode("Mo", 's')    -> "MO-S"
     public static String orderCode(String name, char size) {
-        return "";   // YOUR CODE
+        if (name.length() > 3) {
+            name = name.substring(0, 3);
+        }
+        return name.toUpperCase() + "-" + Character.toUpperCase(size);
     }
 
     // Write a customer's name on the cup neatly: no spaces at the ends, the first letter
@@ -23,7 +26,12 @@ public class StringChallenges {
     //   cupName("  sky  ")  -> "Sky"
     //   cupName("   ")      -> "Guest"
     public static String cupName(String name) {
-        return "";   // YOUR CODE
+        name = name.trim();
+        if (name.isEmpty()) {
+            return "Guest";
+        }
+        return name.substring(0, 1).toUpperCase()
+                + name.substring(1).toLowerCase();
     }
 
     // How many times does word show up in order? Capital and small letters count the same.
@@ -33,7 +41,18 @@ public class StringChallenges {
     //   countWord("oat milk latte", "milk")          -> 1
     //   countWord("black coffee", "sugar")           -> 0
     public static int countWord(String order, String word) {
-        return 0;   // YOUR CODE
+        if (word.isEmpty()) {
+            return 0;
+        }
+        order = order.toLowerCase();
+        word = word.toLowerCase();
+        int count = 0;
+        int position = order.indexOf(word);
+        while (position != -1) {
+            count++;
+            position = order.indexOf(word, position + word.length());
+        }
+        return count;
     }
 
     // One line of a receipt. The name, then dots until the line is 20 characters long,
@@ -42,6 +61,10 @@ public class StringChallenges {
     //   receiptLine("Latte", 3.75) -> "Latte...............$3.75"   (5 letters + 15 dots = 20)
     //   receiptLine("Bagel", 2.5)  -> "Bagel...............$2.50"
     public static String receiptLine(String name, double price) {
-        return "";   // YOUR CODE
+        String line = name;
+        while (line.length() < 20) {
+            line += ".";
+        }
+        return line + String.format("$%.2f", price);
     }
 }
