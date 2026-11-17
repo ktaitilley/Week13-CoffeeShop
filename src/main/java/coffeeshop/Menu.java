@@ -13,31 +13,31 @@ import java.util.ArrayList;
 // Commit message:  step 3: Menu
 
 public class Menu {
-    private ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
+    private ArrayList<MenuItem> items = new ArrayList<MenuItem>();
 
     public Menu() {
-        menu.add(new Drink("Coffee", 2.00, 's'));
-        menu.add(new Drink("Latte", 3.25, 's'));
-        menu.add(new Drink("Cappuccino", 3.25, 's'));
-        menu.add(new Drink("Hot Chocolate", 2.50, 's'));
-        menu.add(new Drink("Iced Tea", 2.25, 's'));
-        menu.add(new Food("Bagel", 2.75, false));
-        menu.add(new Food("Blueberry Muffin", 2.50, false));
-        menu.add(new Food("Breakfast Sandwich", 4.50, false));
+        items.add(new Drink("Coffee", 2.00, 's'));
+        items.add(new Drink("Latte", 3.25, 's'));
+        items.add(new Drink("Cappuccino", 3.25, 's'));
+        items.add(new Drink("Hot Chocolate", 2.50, 's'));
+        items.add(new Drink("Iced Tea", 2.25, 's'));
+        items.add(new Food("Bagel", 2.75, false));
+        items.add(new Food("Blueberry Muffin", 2.50, false));
+        items.add(new Food("Breakfast Sandwich", 4.50, false));
 
 
     }
 
     public int size() {
-        return menu.size();
+        return items.size();
     }
 
     public MenuItem getItem(int number) {
         number = number - 1;
-        if (number < 0 || number >= menu.size()) {
+        if (number < 0 || number >= items.size()) {
             return null;
         } else {
-            return menu.get(number);
+            return items.get(number);
         }
 
     }
@@ -45,8 +45,8 @@ public class Menu {
 
     public String toString(){
         String menulist = "";
-        for( int i = 0; i < menu.size(); i++ ) {
-            MenuItem item = menu.get(i);
+        for(int i = 0; i < items.size(); i++ ) {
+            MenuItem item = items.get(i);
             menulist += (i+1 )+ ". " + item.toString() + "\n";
         }
         return menulist;
