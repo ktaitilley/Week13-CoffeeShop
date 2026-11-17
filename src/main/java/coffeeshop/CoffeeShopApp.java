@@ -18,12 +18,13 @@ import java.util.Scanner;
 public class CoffeeShopApp {
 
     private Scanner input;
-
-    // YOUR CODE (Step 6): add the fields shop and order here.
+    private CoffeeShop Shop;
+    private Order order;
 
     public CoffeeShopApp(Scanner input) {
         this.input = input;
-        // YOUR CODE (Step 6): make the shop, new CoffeeShop("Hornet Coffee"), and the first new Order().
+        this.Shop = new CoffeeShop("Hornet Coffee");
+        this.order = new Order();
     }
 
     // The game loop. It keeps going until the user picks 0.
@@ -32,6 +33,30 @@ public class CoffeeShopApp {
         System.out.println("Build Steps 1 to 5, then write the game loop here in Step 6.");
         // YOUR CODE (Step 6): replace the two lines above with the game loop.
     }
+
+    private void printBanner() {}
+
+    private void printMainMenu(){}
+
+    private void addItem(){}
+
+    private void removeItem(){}
+
+    private void viewOrder(){}
+
+    private void useCoupon(){}
+
+    private void checkout(){}
+
+
+
+
+
+
+
+
+
+
 
     // GIVEN CODE. Do not change it. Use it for every number the user types.
     // It keeps asking until the user types a whole number, so letters can not crash your game.
