@@ -12,7 +12,15 @@ public class LogicChallenges {
     //   anything else -> -1.0 (that size does not exist)
     //   sizeUpcharge('M') -> 0.5     sizeUpcharge('l') -> 1.0     sizeUpcharge('X') -> -1.0
     public static double sizeUpcharge(char size) {
-        return 0.0;   // YOUR CODE
+        if (size == 's'|| size == 'S') {
+            return 0.0;
+        } else if (size == 'm'||size == 'M') {
+            return 0.50;
+        }else if (size == 'l'||size == 'L') {
+            return 1.0;
+        } else {
+            return -1.0;
+        }
     }
 
     // Happy hour on a weekday is from hour 14 to hour 16 (2 PM to 4 PM), both included.
@@ -21,7 +29,76 @@ public class LogicChallenges {
     //   isHappyHour(15, false) -> true     isHappyHour(12, false) -> false
     //   isHappyHour(12, true)  -> true     isHappyHour(25, true)  -> false
     public static boolean isHappyHour(int hour, boolean weekend) {
-        return false;   // YOUR CODE
+        if (weekend == false) {
+            switch (hour) {
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                    return false;
+                case 14:
+                    return true;
+                case 15:
+                    return true;
+                case 16:
+                    return true;
+                case 17:
+                case 18:
+                case 19:
+                case 20:
+                case 21:
+                case 22:
+                case 23:
+                    return false;
+                default:
+                    return false;
+            }
+        } else {
+            switch (hour) {
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                    return false;
+                case 12:
+                    return true;
+                case 13:
+                    return true;
+                case 14:
+                    return true;
+                case 15:
+                    return true;
+                case 16:
+                    return true;
+                case 17:
+                    return true;
+                case 18:
+                case 19:
+                case 20:
+                case 21:
+                case 22:
+                case 23:
+                    return false;
+                default:
+                    return false;
+            }
+        }
     }
 
     // A loyalty card gets one stamp per drink. Every 10 stamps is one free drink.
@@ -31,7 +108,10 @@ public class LogicChallenges {
     //   freeDrinks(8, 3)  -> 1     freeDrinks(0, 25) -> 2
     //   freeDrinks(4, 5)  -> 0     freeDrinks(-1, 30) -> 0
     public static int freeDrinks(int stamps, int bought) {
-        return 0;   // YOUR CODE
+        if (stamps < 0 || bought < 0) {
+            return 0;
+        }
+        return (stamps + bought) / 10;
     }
 
     // The fewest coins that make the change. Coins are 25, 10, 5 and 1 cents.
@@ -41,6 +121,16 @@ public class LogicChallenges {
     //   coinsForChange(41) -> 4  (25 + 10 + 5 + 1)
     //   coinsForChange(99) -> 9  (3 quarters, 2 dimes, 4 pennies)
     public static int coinsForChange(int cents) {
-        return 0;   // YOUR CODE
+        if (cents <= 0) {
+            return 0;
+        }
+        int coins = cents / 25;
+        cents = cents % 25;
+        coins += cents / 10;
+        cents = cents % 10;
+        coins += cents / 5;
+        cents = cents % 5;
+        coins += cents;
+        return coins;
     }
 }
