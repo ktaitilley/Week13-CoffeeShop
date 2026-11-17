@@ -39,7 +39,8 @@ public class Food extends MenuItem {
         if (heated){
             return getName() + ", heated - $" + String.format("%.2f", getPrice());
         } else{
-            return getName() + " - $" + String.format("%.2f", getPrice());
+            return super.toString();
+
         }
     }
 
