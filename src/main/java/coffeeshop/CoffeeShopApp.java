@@ -1,5 +1,5 @@
 package coffeeshop;
-
+//built by Ktai Tilley
 import java.util.Scanner;
 
 // STEP 6 · CoffeeShopApp: the game you play. This is the class with main.
@@ -21,6 +21,7 @@ public class CoffeeShopApp {
     private CoffeeShop shop;
     private Order order;
 
+    //constructor for coffeeshop app
     public CoffeeShopApp(Scanner input) {
         this.input = input;
         this.shop = new CoffeeShop("Hornet Coffee");
@@ -67,6 +68,7 @@ public class CoffeeShopApp {
         System.out.println("Shop closed. Goodbye!");
     }
 
+    //creates a banner
     private void printBanner() {
         System.out.println(
                 "\t ( (\n" +
@@ -80,6 +82,7 @@ public class CoffeeShopApp {
 
     }
 
+    //creates the mainmenu
     private void printMainMenu(){
         System.out.println("=====================================");
         System.out.println("   HORNET COFFEE  -  Order #"
@@ -97,8 +100,7 @@ public class CoffeeShopApp {
         System.out.println("-------------------------------------");
     }
 
-
-
+    //adds a item to the customers order
     private void addItem(){
         System.out.println(shop.getMenu());
         int number = readNumber("Item number: ");
@@ -125,12 +127,12 @@ public class CoffeeShopApp {
                 + order.getItemCount() + " items.");
     }
 
+    //removes a item from a customers order
     private void removeItem(){
         if (order.isEmpty()) {
             System.out.println("Your order is empty.");
             return;
         }
-
         System.out.println(order);
         int number = readNumber("Item number to remove: ");
         if (order.removeItem(number)) {
@@ -140,6 +142,7 @@ public class CoffeeShopApp {
         }
     }
 
+    //shows the customers order
     private void viewOrder(){
         if (order.isEmpty()) {
             System.out.println("Your order is empty.");
@@ -148,6 +151,7 @@ public class CoffeeShopApp {
         }
     }
 
+    //applys the coupon code if available.
     private void useCoupon(){
         String code = readText("Coupon code: ");
         if (order.applyCoupon(code)) {
@@ -158,6 +162,7 @@ public class CoffeeShopApp {
 
     }
 
+    //prints the total order
     private void checkout(){
         if (order.isEmpty()) {
             System.out.println("Your order is empty.");

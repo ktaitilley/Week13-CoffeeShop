@@ -19,6 +19,7 @@ public class Drink extends MenuItem {
     public static final double LARGE_UPCHARGE = 1.00;
     private char size;
 
+    //constructor for drink
     public Drink(String name, double price, char size){
         super(name,price);
         size = Character.toUpperCase(size);
@@ -29,10 +30,12 @@ public class Drink extends MenuItem {
         }
     }
 
+    //get the size of drink
     public char getSize() {
         return size;
     }
 
+    //gets the price
     @Override
     public double getPrice() {
         if (size == 'L'){
@@ -44,10 +47,12 @@ public class Drink extends MenuItem {
         }
     }
 
+    //checks if its a drink
     public boolean isDrink(){
         return true;
     }
 
+    //shows the drink as a string
     public String toString(){
         return getName() + " ("+getSize()+ ") - $" + String.format("%.2f", getPrice());
     }

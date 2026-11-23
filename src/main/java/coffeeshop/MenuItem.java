@@ -14,22 +14,27 @@ public class MenuItem {
     private String name;
     private double price;
 
+    //constructor for menuitem
     public MenuItem(String name, double price) {
         this.name = name;
         this.price = price;
     }
 
+    //gets the name
     public String getName() {
         return name;
     }
 
+    //gets the price
     public double getPrice(){
         return price;
     }
+    //gets the drink
     public boolean isDrink(){
         return false;
     }
 
+    //shows the menu item as a string
     public String toString(){
         return name + " - $" + String.format("%.2f", getPrice());
     }

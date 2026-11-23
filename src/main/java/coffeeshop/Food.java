@@ -17,15 +17,18 @@ public class Food extends MenuItem {
     public static final double HEAT_FEE = 0.50;
     private boolean heated;
 
+    //constructor for food
     public Food(String name, double price, boolean heated) {
         super(name, price);
         this.heated = heated;
     }
 
+    //checks if food is heated
     public boolean isHeated() {
         return heated;
     }
 
+    //gets the price
     @Override
     public double getPrice() {
         if (heated) {
@@ -35,6 +38,7 @@ public class Food extends MenuItem {
         }
     }
 
+    //shows the food as a string
     public String toString(){
         if (heated){
             return getName() + ", heated - $" + String.format("%.2f", getPrice());

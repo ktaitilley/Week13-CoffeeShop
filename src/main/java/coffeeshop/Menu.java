@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class Menu {
     private ArrayList<MenuItem> items = new ArrayList<MenuItem>();
 
+    //constructor for menu
     public Menu() {
         items.add(new Drink("Coffee", 2.00, 's'));
         items.add(new Drink("Latte", 3.25, 's'));
@@ -28,10 +29,12 @@ public class Menu {
 
     }
 
+    //returns the size of the menu
     public int size() {
         return items.size();
     }
 
+    //gets the item from menu
     public MenuItem getItem(int number) {
         number = number - 1;
         if (number < 0 || number >= items.size()) {
@@ -43,6 +46,7 @@ public class Menu {
     }
 
 
+    //shows menu as string
     public String toString(){
         String menulist = "";
         for(int i = 0; i < items.size(); i++ ) {

@@ -24,6 +24,7 @@ public class Order {
     private ArrayList<MenuItem> items;
     private int discountPercent;
 
+    //constructor for the order
     public Order(){
         this.orderNumber = nextOrderNumber;
         nextOrderNumber++;
@@ -31,14 +32,17 @@ public class Order {
         this.discountPercent = 0;
     }
 
+    //gets order number
     public int getOrderNumber() {
         return orderNumber;
     }
 
+    //adds a item
     public void addItem(MenuItem item){
         items.add(item);
     }
 
+    //removes a item
     public boolean removeItem(int number){
         if (number < 1 || number > items.size()) {
             return false;
@@ -47,10 +51,12 @@ public class Order {
         return true;
     }
 
+    //get the amount of items
     public int getItemCount(){
         return items.size();
     }
 
+    //tells if the order empty
     public boolean isEmpty(){
         if (items.isEmpty()){
             return true;
@@ -59,6 +65,7 @@ public class Order {
         }
     }
 
+    //gets the subtotal
     public double getSubtotal(){
         double subtotal = 0.0;
         for (int i=0; i < items.size(); i++){
@@ -67,6 +74,7 @@ public class Order {
         return subtotal;
     }
 
+    //applies coupon to order
     public boolean applyCoupon(String code){
         if (code.trim().equalsIgnoreCase(COUPON_CODE)) {
             this.discountPercent = COUPON_PERCENT;
@@ -76,11 +84,13 @@ public class Order {
         }
     }
 
+    //gets the discount
     public double getDiscount(){
         double discount = getSubtotal() * discountPercent/100.0;
         return discount;
     }
 
+    //get the total
     public double getTotal(int tipPercent){
         if (tipPercent < 0) {
             tipPercent = 0;
@@ -90,6 +100,7 @@ public class Order {
         return total;
     }
 
+    //shows order in a string
     public String toString(){
         String orderList = "Order #" + orderNumber + "\n";
         for (int i = 0; i < items.size(); i++) {

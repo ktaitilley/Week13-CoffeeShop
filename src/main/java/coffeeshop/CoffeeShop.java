@@ -19,6 +19,7 @@ public class CoffeeShop {
     private ArrayList<Order> completedOrders;
     private double totalSales;
 
+    // constructor for coffeeshop
     public CoffeeShop(String name) {
         this.name = name;
         this.menu = new Menu();
@@ -26,14 +27,17 @@ public class CoffeeShop {
         this.totalSales = 0;
     }
 
+    //gets the name
     public String getName() {
         return name;
     }
 
+    //gets the menu
     public Menu getMenu() {
         return menu;
     }
 
+    //calculates the total of the order
     public double checkout(Order order, int tipPercent) {
         if (order.isEmpty()) {
             return 0.0;
@@ -45,14 +49,17 @@ public class CoffeeShop {
         }
     }
 
+    //gets how many orders were completed
     public int getOrdersCompleted() {
         return completedOrders.size();
     }
 
+    //gets the total sales
     public double getTotalSales() {
         return totalSales;
     }
 
+    //gets the items sold
     public int getItemsSold(){
         int sold = 0;
         for (Order order : completedOrders) {
@@ -61,6 +68,7 @@ public class CoffeeShop {
         return sold;
     }
 
+    //shows the sales report
     public String salesReport(){
         String salesReport =
                 "" + name + " - today's sales\n"+
