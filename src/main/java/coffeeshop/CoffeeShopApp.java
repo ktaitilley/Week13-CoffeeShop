@@ -18,35 +18,157 @@ import java.util.Scanner;
 public class CoffeeShopApp {
 
     private Scanner input;
-    private CoffeeShop Shop;
+    private CoffeeShop shop;
     private Order order;
 
     public CoffeeShopApp(Scanner input) {
         this.input = input;
-        this.Shop = new CoffeeShop("Hornet Coffee");
+        this.shop = new CoffeeShop("Hornet Coffee");
         this.order = new Order();
     }
 
     // The game loop. It keeps going until the user picks 0.
     public void run() {
-        System.out.println("Hornet Coffee is not open yet.");
-        System.out.println("Build Steps 1 to 5, then write the game loop here in Step 6.");
-        // YOUR CODE (Step 6): replace the two lines above with the game loop.
+        boolean running = true;
+        printBanner();
+        while(running) {
+            printMainMenu();
+            int number = readNumber("Pick a Number:");
+            switch (number){
+                case 1:
+                    System.out.println(shop.getMenu());
+                    break;
+                case 2:
+                    addItem();
+                    break;
+                case 3:
+                    removeItem();
+                    break;
+                case 4:
+                    viewOrder();
+                    break;
+                case 5:
+                    useCoupon();
+                    break;
+                case 6:
+                    checkout();
+                    break;
+                case 7:
+                    System.out.println(shop.salesReport());
+                    break;
+                case 0:
+                    running = false;
+                    break;
+                default:
+                    System.out.println("That is not on the list. Pick 0 to 7.");
+
+            }
+        }
+        System.out.println("Shop closed. Goodbye!");
     }
 
-    private void printBanner() {}
+    private void printBanner() {
+        System.out.println(
+                "\t ( (\n" +
+                "\t  ) )\n" +
+                "\t........\n" +
+                "\t|\t\t|]\n" +
+                "\t\\      /\n" +
+                "\t `----'\"\n" +
+                " HORNET COFFEE\n");
 
-    private void printMainMenu(){}
 
-    private void addItem(){}
+    }
 
-    private void removeItem(){}
+    private void printMainMenu(){
+        System.out.println("=====================================");
+        System.out.println("   HORNET COFFEE  -  Order #"
+                + order.getOrderNumber() + "  ("
+                + order.getItemCount() + " items)");
+        System.out.println("=====================================");
+        System.out.println(" 1. See the menu");
+        System.out.println(" 2. Add an item");
+        System.out.println(" 3. Remove an item");
+        System.out.println(" 4. View my order");
+        System.out.println(" 5. Use a coupon");
+        System.out.println(" 6. Check out");
+        System.out.println(" 7. Today's sales");
+        System.out.println(" 0. Close the shop");
+        System.out.println("-------------------------------------");
+    }
 
-    private void viewOrder(){}
 
-    private void useCoupon(){}
 
-    private void checkout(){}
+    private void addItem(){
+        System.out.println(shop.getMenu());
+        int number = readNumber("Item number: ");
+        MenuItem picked = shop.getMenu().getItem(number);
+        if (picked == null) {
+            System.out.println("That item is not on the menu.");
+            return;
+        }
+        if (picked.isDrink()) {
+            String answer = readText("Size (S, M, L): ");
+            char size = 'S';
+            if (!answer.isEmpty()) {
+                size = answer.charAt(0);
+            }
+            order.addItem(new Drink(
+                    picked.getName(), picked.getPrice(), size));
+        } else {
+            String answer = readText("Heat it up? (y/n): ");
+            boolean heated = answer.equalsIgnoreCase("y");
+            order.addItem(new Food(
+                    picked.getName(), picked.getPrice(), heated));
+        }
+        System.out.println("Added. Your order has "
+                + order.getItemCount() + " items.");
+    }
+
+    private void removeItem(){
+        if (order.isEmpty()) {
+            System.out.println("Your order is empty.");
+            return;
+        }
+
+        System.out.println(order);
+        int number = readNumber("Item number to remove: ");
+        if (order.removeItem(number)) {
+            System.out.println("Item removed.");
+        } else {
+            System.out.println("That item is not in your order.");
+        }
+    }
+
+    private void viewOrder(){
+        if (order.isEmpty()) {
+            System.out.println("Your order is empty.");
+        } else {
+            System.out.println(order);
+        }
+    }
+
+    private void useCoupon(){
+        String code = readText("Coupon code: ");
+        if (order.applyCoupon(code)) {
+            System.out.println("Coupon applied.");
+        } else {
+            System.out.println("Invalid coupon code.");
+        }
+
+    }
+
+    private void checkout(){
+        if (order.isEmpty()) {
+            System.out.println("Your order is empty.");
+            return;
+        }
+        System.out.println(order);
+        int tipPercent = readNumber("Tip percent (0, 10, 15, 20): ");
+        double total = shop.checkout(order, tipPercent);
+        System.out.printf("Total: $%.2f%n", total);
+        order = new Order();
+    }
 
 
 
